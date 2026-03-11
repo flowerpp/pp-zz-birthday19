@@ -94,7 +94,7 @@ function goToScene(index) {
   state.currentSceneIndex = index;
 
   const wrapper = document.querySelector('.scene-wrapper');
-  wrapper.style.transform = `translateX(-${index * 100}%)`;
+  wrapper.style.transform = `translateX(-${index * 100}vw)`;
   updateGalleryUI();
 
   /* 场景文字淡入动画 */

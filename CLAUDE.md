@@ -58,3 +58,9 @@ cwebp -q 85 -resize 1200 0 "input.jpg" -o "output.webp"
 - 变量名、函数名使用英文
 - 每个 JS 函数 ≤ 30 行
 - 禁止使用第三方框架（Vue/React/Angular）和构建工具（Webpack/Vite）
+
+## Active Technologies
+- JavaScript ES2020+（原生，无框架） + 无新增 (004-fix-gallery-photos)
+
+## Recent Changes
+- 004-fix-gallery-photos: Added JavaScript ES2020+（原生，无框架） + 无新增
