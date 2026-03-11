@@ -44,6 +44,19 @@
   font-size: clamp(1.4rem, 5vw, 1.9rem);
 }
 
+/* 作者署名 */
+.intro-credits {
+  font-family: var(--font-body);
+  font-size: clamp(0.62rem, 2vw, 0.75rem);  /* 不超过主文字的 70% */
+  color: rgba(176, 168, 208, 0.55);           /* 透明度低于主文字 */
+  letter-spacing: 0.04em;
+  text-align: center;
+  line-height: 1.6;
+  max-width: 300px;
+  word-break: break-word;                     /* 小屏自动换行 */
+  margin-top: var(--spacing-sm);
+}
+
 /* 开始按钮 */
 #start-btn {
   opacity: 0;
