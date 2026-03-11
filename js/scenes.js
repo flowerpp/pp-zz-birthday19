@@ -177,7 +177,7 @@ function renderAllScenes(wrapper) {
       const img = document.createElement('img');
       img.src = photo.fallback;
       img.alt = photo.alt;
-      img.loading = 'lazy';
+      img.loading = 'eager';
       img.className = 'scene-photo';
       picture.appendChild(sourceWebp);
       picture.appendChild(img);
