@@ -80,6 +80,10 @@ convert_to_webp "$SRC/18岁.JPG"          "$DEST/scene-08-age18/age18-01.webp"
 convert_to_webp "$SRC/18岁1.JPG"         "$DEST/scene-08-age18/age18-02.webp"
 convert_to_webp "$SRC/18岁2.JPG"         "$DEST/scene-08-age18/age18-03.webp"
 
+echo "家庭合影"
+ls "$SRC/3岁36.JPG" 
+
+convert_to_webp "$SRC/3岁36.JPG"          "$DEST/finale/finale-01.webp"
 echo ""
 echo "=== 照片处理完成！==="
 echo "请手动将一张家庭合影放到：assets/photos/finale/finale-01.webp"
