@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#0a0a2e">
+  <meta name="description" content="给壮壮19岁的生日礼物">
+
+  <title>给19岁的你 · 壮壮生日快乐</title>
+
+  <!-- 手写字体（Google Fonts） -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+
+  <!-- 样式表 -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/scenes.css">
+  <link rel="stylesheet" href="css/stars.css">
+</head>
+<body>
+
+  <!-- 音频控制按钮（常驻右上角） -->
+  <button class="audio-btn" aria-label="音乐控制">♪</button>
+
+  <!-- ==========================================
+       章节 1：序幕
+       ========================================== -->
+  <section id="intro" class="section">
+    <div class="starfield-bg"></div>
+
+    <div class="intro-content">
+      <div class="intro-letter">
+        <span class="intro-line">亲爱的壮壮，</span>
+        <span class="intro-line accent">推开这扇门，</span>
+        <span class="intro-line">走进你的19年。</span>
+        <span class="intro-line small">——爸爸妈妈为你准备的时光长廊</span>
+      </div>
+
+      <button id="start-btn">✦ 开始旅程 ✦</button>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       章节 2：记忆长廊
+       ========================================== -->
+  <section id="gallery" class="section">
+    <div class="starfield-bg"></div>
+
+    <!-- 滑动场景容器（由 JS 动态填充） -->
+    <div class="scene-wrapper"></div>
+
+    <!-- 底部导航栏 -->
+    <nav class="gallery-nav">
+      <button class="nav-btn nav-prev" aria-label="上一个">‹</button>
+      <span class="progress-indicator">1 / 8</span>
+      <button class="nav-btn nav-next" aria-label="下一个">›</button>
+      <button class="gallery-continue" aria-label="进入星光">继续 ✦</button>
+    </nav>
+  </section>
+
+  <!-- ==========================================
+       章节 3：19朵星光
+       ========================================== -->
+  <section id="stars" class="section">
+    <div class="starfield-bg"></div>
+
+    <!-- 19颗星（由 JS 动态生成） -->
+    <div class="stars-field"></div>
+
+    <!-- 已打开数量提示 -->
+    <div class="stars-counter">点亮每一颗星 ✦</div>
+
+    <!-- 祝福弹窗 -->
+    <div class="blessing-popup" role="dialog" aria-modal="true">
+      <div class="blessing-card">
+        <span class="blessing-star-icon">⭐</span>
+        <p class="blessing-text"></p>
+        <button class="blessing-close" onclick="closeBlessing()">收下这份祝福 ✦</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       章节 4：终幕彩蛋
+       ========================================== -->
+  <section id="finale" class="section">
+    <div class="finale-overlay"
+         style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2rem;padding:2rem;text-align:center;background:linear-gradient(160deg,#050518 0%,#0a0a2e 100%);">
+
+      <!-- 家庭照片 -->
+      <picture class="finale-photo" style="border-radius:16px;overflow:hidden;max-width:320px;width:90%;box-shadow:0 0 40px rgba(201,160,220,0.4);">
+        <source srcset="assets/photos/finale/finale-01.webp" type="image/webp">
+        <img src="assets/photos/finale/finale-01.jpg"
+             alt="全家福"
+             style="width:100%;display:block;object-fit:cover;">
+      </picture>
+
+      <!-- 专属暗语 -->
+      <div class="finale-message"
+           style="font-family:var(--font-handwrite);font-size:clamp(1.1rem,4vw,1.5rem);color:var(--color-text);line-height:1.8;max-width:360px;">
+        壮壮，<br>
+        姑且20岁之前我们还这么叫你，<br>
+        爸爸妈妈永远爱你。<br>
+        <span style="color:var(--color-accent);">生日快乐！❤️</span>
+      </div>
+
+      <!-- 重新旅行按钮 -->
+      <button class="finale-restart"
+              style="opacity:0;pointer-events:none;transition:opacity 1s ease;padding:0.75rem 2rem;border:1.5px solid var(--color-primary);border-radius:50px;background:transparent;color:var(--color-text);font-family:var(--font-handwrite);font-size:1rem;cursor:pointer;">
+        ↺ 重新旅行
+      </button>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       JavaScript 模块（顺序加载）
+       ========================================== -->
+  <script src="js/scenes.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/stars.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+</html>

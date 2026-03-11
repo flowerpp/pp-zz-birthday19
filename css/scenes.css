@@ -1,0 +1,245 @@
+/* ============================================
+   序幕（#intro）样式
+   ============================================ */
+#intro {
+  flex-direction: column;
+  text-align: center;
+  padding: var(--spacing-lg);
+  background: linear-gradient(160deg, var(--color-bg) 0%, var(--color-bg-mid) 100%);
+}
+
+.intro-content {
+  position: relative;
+  z-index: 2;
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+/* 手写风格邀请信 */
+.intro-letter {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: var(--spacing-lg);
+}
+
+.intro-line {
+  font-family: var(--font-handwrite);
+  font-size: clamp(1.2rem, 4vw, 1.6rem);
+  color: var(--color-text);
+  line-height: 1.6;
+  opacity: 0;
+}
+
+.intro-line.small {
+  font-size: clamp(0.9rem, 3vw, 1.1rem);
+  color: var(--color-text-soft);
+}
+
+.intro-line.accent {
+  color: var(--color-accent);
+  font-size: clamp(1.4rem, 5vw, 1.9rem);
+}
+
+/* 开始按钮 */
+#start-btn {
+  opacity: 0;
+  pointer-events: none;
+  padding: 0.85rem 2.5rem;
+  border: 1.5px solid var(--color-primary);
+  border-radius: 50px;
+  background: transparent;
+  color: var(--color-text);
+  font-family: var(--font-handwrite);
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: opacity 1s ease, background var(--transition-fast), transform var(--transition-fast);
+  animation: pulse 2s infinite 3s;
+}
+
+#start-btn.visible {
+  opacity: 1;
+  pointer-events: all;
+}
+
+#start-btn:hover {
+  background: rgba(123, 104, 238, 0.2);
+  transform: scale(1.04);
+}
+
+/* ============================================
+   记忆长廊（#gallery）样式
+   ============================================ */
+#gallery {
+  flex-direction: column;
+  overflow: hidden;
+  background: linear-gradient(160deg, var(--color-bg) 0%, var(--color-bg-mid) 100%);
+}
+
+/* 滑动容器 */
+.scene-wrapper {
+  display: flex;
+  width: calc(100% * 8);     /* 8个场景 × 100% */
+  height: 100%;
+  transition: transform 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform;
+}
+
+/* 单个场景 */
+.scene {
+  flex: 0 0 calc(100% / 8);  /* 每格占总宽的 1/8 */
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 1.5rem;
+  gap: 1rem;
+}
+
+/* 照片区 */
+.scene-photos {
+  display: flex;
+  gap: 0.6rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 100%;
+  cursor: pointer;
+}
+
+.photo-wrapper {
+  position: relative;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow:
+    0 4px 20px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(255, 255, 255, 0.08);
+  transition: transform var(--transition-fast);
+}
+
+.photo-wrapper:hover {
+  transform: scale(1.03);
+}
+
+.scene-photo {
+  display: block;
+  max-height: 38vh;
+  max-width: 100%;
+  width: auto;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  position: relative;
+  z-index: 1;
+}
+
+/* 单张大图时放大 */
+.scene-photos:has(.photo-wrapper:only-child) .scene-photo {
+  max-height: 50vh;
+}
+
+/* 文字区 */
+.scene-text {
+  max-width: 380px;
+  text-align: center;
+  opacity: 0;
+}
+
+.scene-active .scene-text {
+  animation: fadeInUp 0.6s ease 0.1s forwards;
+}
+
+.scene-age-label {
+  display: inline-block;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  color: var(--color-primary);
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  border: 1px solid rgba(123, 104, 238, 0.4);
+  padding: 0.2rem 0.8rem;
+  border-radius: 50px;
+}
+
+.scene-words {
+  font-family: var(--font-handwrite);
+  font-size: clamp(1rem, 3.5vw, 1.25rem);
+  line-height: 1.75;
+  color: var(--color-text);
+}
+
+/* ============================================
+   导航控件（长廊）
+   ============================================ */
+.gallery-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1.5rem 1.2rem;
+  background: linear-gradient(to top, rgba(10,10,46,0.9) 0%, transparent 100%);
+}
+
+.nav-btn {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(255,255,255,0.2);
+  background: rgba(123, 104, 238, 0.15);
+  color: var(--color-text);
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-fast);
+}
+
+.nav-btn:hover {
+  background: rgba(123, 104, 238, 0.35);
+  transform: scale(1.1);
+}
+
+.gallery-continue {
+  display: none;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem 1.5rem;
+  border-radius: 50px;
+  border: 1.5px solid var(--color-primary);
+  background: rgba(123, 104, 238, 0.15);
+  color: var(--color-text);
+  font-family: var(--font-handwrite);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: var(--transition-fast);
+  animation: pulse 2s infinite;
+}
+
+.gallery-continue:hover {
+  background: rgba(123, 104, 238, 0.35);
+  transform: scale(1.04);
+}
+
+/* ============================================
+   横屏下长廊适配
+   ============================================ */
+@media (orientation: landscape) and (max-height: 500px) {
+  .scene {
+    flex-direction: row;
+    padding: 0.5rem 1rem;
+    gap: 1rem;
+  }
+  .scene-photo {
+    max-height: 70vh;
+  }
+  .scene-text {
+    text-align: left;
+  }
+}
