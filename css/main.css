@@ -1,0 +1,226 @@
+/* ============================================
+   主题变量与全局样式
+   《给19岁的你》— 蓝紫星空主题
+   ============================================ */
+
+:root {
+  /* 主色调：蓝紫星空 */
+  --color-bg:           #0a0a2e;
+  --color-bg-mid:       #1a1a4e;
+  --color-primary:      #7b68ee;   /* 主紫 */
+  --color-accent:       #c9a0dc;   /* 淡紫/樱花 */
+  --color-sakura:       #ffb7c5;   /* 樱花粉 */
+  --color-star:         #fffde7;   /* 星光黄白 */
+  --color-gold:         #ffd700;   /* 金色（已打开的星） */
+  --color-text:         #e8e0ff;   /* 正文文字 */
+  --color-text-soft:    #b0a8d0;   /* 次级文字 */
+  --color-white:        #ffffff;
+
+  /* 字体 */
+  --font-handwrite:     'Ma Shan Zheng', 'ZCOOL KuaiLe', 'STKaiti', cursive;
+  --font-body:          'PingFang SC', 'Microsoft YaHei', sans-serif;
+
+  /* 间距 */
+  --spacing-sm:  0.5rem;
+  --spacing-md:  1rem;
+  --spacing-lg:  2rem;
+  --spacing-xl:  3rem;
+
+  /* 过渡 */
+  --transition-fast:    0.3s ease;
+  --transition-normal:  0.6s ease;
+  --transition-slow:    1s ease;
+
+  /* 圆角 */
+  --radius-sm:   8px;
+  --radius-md:   16px;
+  --radius-lg:   24px;
+  --radius-full: 50%;
+}
+
+/* 全局重置 */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* 防止手机浏览器橡皮筋回弹 */
+  overscroll-behavior: none;
+}
+
+/* 章节容器：全屏 */
+.section {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  height: 100dvh;   /* 动态视口高度，适配手机地址栏 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-normal);
+}
+
+.section.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* ============================================
+   音频控制浮动按钮（右上角常驻）
+   ============================================ */
+.audio-btn {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1000;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(10, 10, 46, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  cursor: pointer;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-fast);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.audio-btn.visible {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.audio-btn:hover {
+  background: rgba(123, 104, 238, 0.4);
+  transform: scale(1.1);
+}
+
+/* ============================================
+   星空背景（共用）
+   ============================================ */
+.starfield-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* 小星星点阵，通过 box-shadow 实现 */
+.starfield-bg::before,
+.starfield-bg::after {
+  content: '';
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: var(--color-star);
+  border-radius: 50%;
+  box-shadow:
+    /* 随机分布100颗小星星 */
+    5vw 10vh 0 0 rgba(255,253,231,0.8),
+    15vw 25vh 0 1px rgba(255,253,231,0.5),
+    25vw 5vh 0 0 rgba(255,253,231,0.7),
+    35vw 40vh 0 0 rgba(255,253,231,0.6),
+    45vw 15vh 0 1px rgba(255,253,231,0.9),
+    55vw 30vh 0 0 rgba(255,253,231,0.4),
+    65vw 8vh 0 0 rgba(255,253,231,0.8),
+    75vw 20vh 0 1px rgba(255,253,231,0.6),
+    85vw 35vh 0 0 rgba(255,253,231,0.7),
+    92vw 12vh 0 0 rgba(255,253,231,0.5),
+    8vw 50vh 0 0 rgba(255,253,231,0.6),
+    18vw 65vh 0 1px rgba(255,253,231,0.4),
+    28vw 55vh 0 0 rgba(255,253,231,0.8),
+    38vw 70vh 0 0 rgba(255,253,231,0.5),
+    48vw 45vh 0 0 rgba(255,253,231,0.7),
+    58vw 60vh 0 1px rgba(255,253,231,0.6),
+    68vw 75vh 0 0 rgba(255,253,231,0.4),
+    78vw 50vh 0 0 rgba(255,253,231,0.9),
+    88vw 65vh 0 0 rgba(255,253,231,0.5),
+    95vw 45vh 0 1px rgba(255,253,231,0.7),
+    3vw 80vh 0 0 rgba(255,253,231,0.6),
+    13vw 85vh 0 0 rgba(255,253,231,0.4),
+    23vw 90vh 0 1px rgba(255,253,231,0.8),
+    33vw 80vh 0 0 rgba(255,253,231,0.5),
+    43vw 88vh 0 0 rgba(255,253,231,0.7),
+    53vw 82vh 0 0 rgba(255,253,231,0.6),
+    63vw 92vh 0 1px rgba(255,253,231,0.4),
+    73vw 78vh 0 0 rgba(255,253,231,0.8),
+    83vw 85vh 0 0 rgba(255,253,231,0.5),
+    93vw 80vh 0 0 rgba(255,253,231,0.7),
+    10vw 38vh 0 0 rgba(201,160,220,0.6),
+    20vw 42vh 0 1px rgba(201,160,220,0.4),
+    30vw 22vh 0 0 rgba(201,160,220,0.8),
+    40vw 58vh 0 0 rgba(201,160,220,0.5),
+    50vw 72vh 0 0 rgba(201,160,220,0.7),
+    60vw 18vh 0 1px rgba(201,160,220,0.6),
+    70vw 42vh 0 0 rgba(201,160,220,0.4),
+    80vw 28vh 0 0 rgba(201,160,220,0.8),
+    90vw 55vh 0 0 rgba(201,160,220,0.5),
+    97vw 30vh 0 1px rgba(201,160,220,0.7);
+  animation: twinkle 4s infinite alternate;
+}
+
+.starfield-bg::after {
+  width: 1px;
+  height: 1px;
+  box-shadow:
+    7vw 18vh 0 0 rgba(255,253,231,0.5),
+    17vw 32vh 0 0 rgba(255,253,231,0.7),
+    27vw 48vh 0 0 rgba(255,253,231,0.4),
+    37vw 62vh 0 0 rgba(255,253,231,0.8),
+    47vw 28vh 0 0 rgba(255,253,231,0.6),
+    57vw 52vh 0 0 rgba(255,253,231,0.5),
+    67vw 38vh 0 0 rgba(255,253,231,0.9),
+    77vw 68vh 0 0 rgba(255,253,231,0.4),
+    87vw 22vh 0 0 rgba(255,253,231,0.7),
+    94vw 72vh 0 0 rgba(255,253,231,0.6),
+    2vw 58vh 0 0 rgba(255,183,197,0.5),
+    12vw 72vh 0 0 rgba(255,183,197,0.7),
+    22vw 15vh 0 0 rgba(255,183,197,0.4),
+    32vw 35vh 0 0 rgba(255,183,197,0.8),
+    42vw 75vh 0 0 rgba(255,183,197,0.6);
+  animation: twinkle 6s infinite alternate-reverse;
+}
+
+@keyframes twinkle {
+  0%   { opacity: 0.4; }
+  50%  { opacity: 1; }
+  100% { opacity: 0.6; }
+}
+
+/* ============================================
+   进度指示器（长廊用）
+   ============================================ */
+.progress-indicator {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--color-text-soft);
+  letter-spacing: 0.1em;
+}
+
+/* ============================================
+   横屏适配
+   ============================================ */
+@media (orientation: landscape) and (max-height: 500px) {
+  :root {
+    --spacing-lg: 1rem;
+    --spacing-xl: 1.5rem;
+  }
+}

@@ -1,0 +1,153 @@
+/* ============================================
+   19朵星光（#stars）样式
+   ============================================ */
+#stars {
+  background: linear-gradient(180deg, #050518 0%, var(--color-bg) 60%, var(--color-bg-mid) 100%);
+  overflow: hidden;
+}
+
+/* 星星容器（全屏绝对定位） */
+.stars-field {
+  position: absolute;
+  inset: 0;
+}
+
+/* 单颗星 */
+.star {
+  position: absolute;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: var(--radius-full);
+  background: radial-gradient(circle, var(--color-star) 0%, rgba(255, 253, 231, 0.3) 60%, transparent 100%);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.6rem;
+  color: rgba(255, 255, 255, 0.5);
+  /* 初始隐藏，由 JS 添加动画 */
+  opacity: 0;
+  transform: scale(0);
+  transition:
+    box-shadow var(--transition-fast),
+    transform var(--transition-fast);
+  animation: starBlink 3s infinite;
+  /* 每颗星不同的闪烁节奏由 JS 设置 animation-delay */
+}
+
+.star:hover {
+  box-shadow: 0 0 16px 4px rgba(255, 253, 231, 0.8);
+  transform: scale(1.25) !important;
+  z-index: 10;
+}
+
+/* 已打开的星 */
+.star.star-opened {
+  background: radial-gradient(circle, var(--color-gold) 0%, rgba(255, 215, 0, 0.4) 60%, transparent 100%);
+  animation: starBlink 4s infinite;
+}
+
+/* 第19颗特殊星（终幕彩蛋） */
+.star.star-special {
+  width: 2.8rem;
+  height: 2.8rem;
+  background: radial-gradient(circle, #fff 0%, var(--color-accent) 40%, transparent 100%);
+  box-shadow: 0 0 20px 6px rgba(201, 160, 220, 0.5);
+  animation: starBlink 1.5s infinite;
+}
+
+/* 星星进入动画 */
+.star.star-entering {
+  animation: starEnter 0.5s ease forwards, starBlink 3s infinite 0.5s;
+}
+
+@keyframes starEnter {
+  from { opacity: 0; transform: scale(0) rotate(-20deg); }
+  to   { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+
+/* ============================================
+   祝福弹窗
+   ============================================ */
+.blessing-popup {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: rgba(5, 5, 24, 0.75);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+/* 降级：不支持 backdrop-filter 时 */
+@supports not (backdrop-filter: blur(1px)) {
+  .blessing-popup {
+    background: rgba(10, 10, 46, 0.92);
+  }
+}
+
+.blessing-popup.visible {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.blessing-card {
+  max-width: 340px;
+  width: 100%;
+  background: rgba(26, 26, 78, 0.8);
+  border: 1px solid rgba(201, 160, 220, 0.3);
+  border-radius: var(--radius-lg);
+  padding: 2rem 1.5rem;
+  text-align: center;
+  position: relative;
+  animation: scaleIn 0.35s ease;
+}
+
+.blessing-star-icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.blessing-text {
+  font-family: var(--font-handwrite);
+  font-size: clamp(1.1rem, 4vw, 1.4rem);
+  line-height: 1.85;
+  color: var(--color-text);
+}
+
+.blessing-close {
+  margin-top: 1.5rem;
+  padding: 0.5rem 1.8rem;
+  border: 1px solid rgba(201, 160, 220, 0.4);
+  border-radius: 50px;
+  background: transparent;
+  color: var(--color-text-soft);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.blessing-close:hover {
+  background: rgba(123, 104, 238, 0.2);
+  color: var(--color-text);
+}
+
+/* 已打开数量提示 */
+.stars-counter {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  font-size: 0.8rem;
+  color: var(--color-text-soft);
+  letter-spacing: 0.1em;
+  pointer-events: none;
+}
